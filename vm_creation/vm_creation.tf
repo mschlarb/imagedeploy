@@ -40,7 +40,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 # Create virtual machine from image
-resource "azurerm_virtual_machine" "web_server" {
+resource "azurerm_virtual_machine" "vm_from_image" {
   name                         = "${var.vm_name}"
   location                     = "${data.azurerm_resource_group.rg.location}"
   resource_group_name          = "${data.azurerm_resource_group.rg.name}"  
@@ -52,17 +52,14 @@ resource "azurerm_virtual_machine" "web_server" {
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
-    image_uri         = "{var.image_uri}"
-    os_type           = "{var.os_type}"
+    image_uri         = "${var.image_uri}"
+    os_type           = "${var.os_type}"
   }
   
   os_profile {
     computer_name      = "${var.vm_name}" 
     admin_username     = "${var.username}"
     admin_password     = "${var.password}"
-  }
-
-  os_profile_windows_config {
   }
 
   os_profile_linux_config {
