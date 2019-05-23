@@ -26,12 +26,8 @@ variable "vm_size" {
   description = "The size of the Virtual Machine"
 }
 
-variable "image_uri" {
-  description = "The URI to the customized image"
-}
-
-variable "os_type" {
-  description = "The OS type Windows or Linux"
+variable "custom_image_name" {
+  description = "The name of the custom image to provision this Virtual Machine from"
 }
 
 variable "username" {

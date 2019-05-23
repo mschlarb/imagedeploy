@@ -19,6 +19,10 @@ data "azurerm_subnet" "subnet" {
   resource_group_name  = "${var.rg_name}"
 }
 
+data "azurerm_image" "custom" {
+  name                = "${var.custom_image_name}"
+  resource_group_name = "${var.rg_name}"
+}
 
 # Create network interface
 resource "azurerm_network_interface" "nic" {
@@ -47,13 +51,15 @@ resource "azurerm_virtual_machine" "vm_from_image" {
   network_interface_ids        = ["${azurerm_network_interface.nic.id}"]
   vm_size                      = "${var.vm_size}"
 
+  storage_image_reference {
+    id = "${data.azurerm_image.custom.id}"
+  }
+
   storage_os_disk {
     name              = "${var.vm_name}-os"    
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
-    image_uri         = "${var.image_uri}"
-    os_type           = "${var.os_type}"
   }
   
   os_profile {

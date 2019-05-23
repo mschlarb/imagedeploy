@@ -19,8 +19,8 @@ tag = ""
 # The size of the Virtual Machine
 vm_size = ""
 
-# The URI to the customized image
-image_uri = ""
+# The name of the custom image to provision this Virtual Machine from
+custom_image_name = ""
 
 # The OS type Windows or Linux
 os_type = ""
