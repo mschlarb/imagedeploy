@@ -22,9 +22,6 @@ vm_size = ""
 # The name of the custom image to provision this Virtual Machine from
 custom_image_name = ""
 
-# The OS type Windows or Linux
-os_type = ""
-
 # The username for initial login
 username = ""
 
