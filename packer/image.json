@@ -1,14 +1,24 @@
 {
+
+  "variables": {
+    "var_secret": "{{env `ARM_CLIENT_SECRET`}}",
+    "var_client": "{{env `ARM_CLIENT_ID`}}",
+    "var_subscription": "{{env `ARM_SUBSCRIPTION_ID`}}",
+    "var_tenant": "{{env `ARM_TENANT_ID`}}",
+    "var_resgroup": "Automation01",
+    "var_imagename": "vm-sles04-image-20190527085545"
+  },
+
     "builders": [{
       "type": "azure-arm",
+
+      "client_id": "{{user `var_client`}}",
+      "client_secret": "{{user `var_secret`}}",
+      "tenant_id": "{{user `var_tenant`}}",
+      "subscription_id": "{{user `var_subscription`}}",
   
-      "client_id": "<appId>",
-      "client_secret": "<password>",
-      "tenant_id": "<tenant>",
-      "subscription_id": "<subscription_id>",
-  
-      "managed_image_resource_group_name": "packer_images",
-      "managed_image_name": "myFirstImage",
+      "managed_image_resource_group_name": "{{user `var_resgroup`}}",
+      "managed_image_name": "{{user `var_imagename`}}",
   
       "os_type": "Linux",
       "image_publisher": "Canonical",
