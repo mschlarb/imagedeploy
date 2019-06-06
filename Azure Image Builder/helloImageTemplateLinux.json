@@ -4,7 +4,7 @@
     "location": "<region>",
     "dependsOn": [],
     "tags": {
-        "imagebuilderTemplate": "ubuntu1804"
+        "imagebuilderTemplate": "sles12sp4"
             },
     "properties": {
 
@@ -12,10 +12,10 @@
         
         "source": {
             "type": "PlatformImage",
-                "publisher": "Canonical",
-                "offer": "UbuntuServer",
-                "sku": "18.04-LTS",
-                "version": "18.04.201903060"
+                "publisher": "SUSE",
+                "offer": "SLES-SAP",
+                "sku": "12-SP4",
+                "version": "2019.05.20"
             
         },
         "customize": [
@@ -46,7 +46,7 @@
                 "type": "Shell",
                 "name": "InstallUpgrades",
                 "inline": [
-                    "sudo apt install unattended-upgrades"
+                    "sudo zypper up -y"
                 ]
             }
 
@@ -59,7 +59,7 @@
                     "runOutputName": "<runOutputName>",
                     "artifactTags": {
                         "source": "azVmImageBuilder",
-                        "baseosimg": "ubuntu1804"
+                        "baseosimg": "sles12sp4"
                     }
                 }
             ]
