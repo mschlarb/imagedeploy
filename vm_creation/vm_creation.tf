@@ -38,7 +38,7 @@ resource "azurerm_network_interface" "nic" {
     private_ip_address                      = "${var.ip_address}"
   }
 
-  tags {
+  tags = {
     autotag = "${var.tag}"
   }
 }
@@ -72,7 +72,7 @@ resource "azurerm_virtual_machine" "vm_from_image" {
       disable_password_authentication = false
   }
 
-  tags {
+  tags = {
       autotag = "${var.tag}"
   }
 
