@@ -29,6 +29,15 @@ sap_sid = "HN1"
 # SAP instance number to be used for HANA installation.
 sap_instancenum = "01"
 
+# List disk sizes in GB for all HANA data disks.
+storage_disk_sizes_data = [512, 512, 512]
+
+# List disk sizes in GB for all HANA log disks.
+storage_disk_sizes_log = [32, 32]
+
+# List disk sizes in GB for all HANA shared disks.
+storage_disk_sizes_shared = [512]
+
 # URL to download SAPCAR binary from.
 url_sap_sapcar_linux = "https://XXX"
 
@@ -93,17 +102,11 @@ install_webide = false
 # Set this to be a list of the ip addresses that should be allowed by the NSG.
 allow_ips = ["0.0.0.0/0"]
 
-# The address space of the Vnet that will be created.
-vnet_address = "10.222.0.0/24"
-
-# The name of the existing Vnet.
+# The name of the respective Vnet.
 vnet_name = "HN1-vnet"
 
-# The address space of the first subnet.
-vnet_subnet_address = ["10.222.0.0/27"]
-
-# The name of the first subnet.
-vnet_subnet_name = ["default"]
+# The name of the respective subnet.
+vnet_subnet_name = "default"
 
 # The desired private IP address of this HANA database. Leave empty to assign dynamic IP address.
 private_ip_address_hdb = ""

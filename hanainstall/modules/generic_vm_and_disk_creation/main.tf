@@ -91,7 +91,6 @@ resource "azurerm_virtual_machine" "vm" {
   location                      = "${var.az_region}"
   resource_group_name           = "${var.az_resource_group}"
   network_interface_ids         = ["${var.nic_id}"]
-#  availability_set_id           = "${var.availability_set_id}"
   vm_size                       = "${var.vm_size}"
   delete_os_disk_on_termination = "true"
   zones = ["${var.zone}"]
@@ -132,20 +131,22 @@ resource "azurerm_virtual_machine" "vm" {
 
 }
 
-resource "azurerm_virtual_machine_extension" "sapaem" {
-  name                 = "AzureEnhancedMonitorForLinux"
-  location             = "${var.az_region}"
-  resource_group_name  = "${var.az_resource_group}"
-  virtual_machine_name = "${var.machine_name}"
-  publisher            = "Microsoft.OSTCExtensions"
-  type                 = "AzureEnhancedMonitorForLinux"
-  type_handler_version = "3.0"
-  auto_upgrade_minor_version = true
-
-  settings = <<SETTINGS
-    {
-        "WADStorageAccountName": "${azurerm_storage_account.bootdiagstorageaccount.name}"
-    }
-SETTINGS
-
-}
+#resource "azurerm_virtual_machine_extension" "sapaem" {
+#  depends_on = [
+#    azurerm_virtual_machine.vm,
+#  ]
+#  name                 = "AzureEnhancedMonitorForLinux"
+#  location             = "${var.az_region}"
+#  resource_group_name  = "${var.az_resource_group}"
+#  virtual_machine_name = "${azurerm_virtual_machine.vm.name}"
+#  publisher            = "Microsoft.OSTCExtensions"
+#  type                 = "AzureEnhancedMonitorForLinux"
+#  type_handler_version = "3.0"
+#  auto_upgrade_minor_version = true
+#
+#  settings = <<SETTINGS
+#    {
+#        "WADStorageAccountName": "${azurerm_storage_account.bootdiagstorageaccount.name}"
+#    }
+#SETTINGS
+#}

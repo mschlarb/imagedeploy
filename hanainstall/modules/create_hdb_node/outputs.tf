@@ -50,16 +50,8 @@ output "az_region" {
   value = "${var.az_region}"
 }
 
-output "vnet_address" {
-  value = "${var.vnet_address}"
-}
-
 output "vnet_name" {
   value = "${var.vnet_name}"
-}
-
-output "vnet_subnet_address" {
-  value = "${var.vnet_subnet_address}"
 }
 
 output "vnet_subnet_name" {
@@ -67,7 +59,7 @@ output "vnet_subnet_name" {
 }
 
 output "private_ip_address" {
-  value = "${var.private_ip_address}"
+  value = "${module.nic_and_pip_setup.nic_ip}"
 }
 
 output "public_ip_allocation_type" {
@@ -176,7 +168,7 @@ output "useHana2" {
 }
 
 output "vm_size" {
-  default = "${var.vm_size}"
+  value = "${var.vm_size}"
 }
 
 output "vm_user" {

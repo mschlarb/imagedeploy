@@ -17,3 +17,8 @@ output "nic_name" {
   description = "The name of the network interface"
   value       = "${azurerm_network_interface.nic.name}"
 }
+
+output "nic_ip" {
+  description = "The static or dynamic private IP"
+  value       = "${azurerm_network_interface.nic.private_ip_address}"
+}
