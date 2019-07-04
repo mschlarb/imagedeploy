@@ -62,7 +62,6 @@ module "configure_vm" {
   url_sapui5               = "${var.url_sapui5}"
   url_portal_services      = "${var.url_portal_services}"
   url_xs_services          = "${var.url_xs_services}"
-  url_shine_xsa            = "${var.url_shine_xsa}"
   url_xsa_hrtt             = "${var.url_xsa_hrtt}"
   url_xsa_webide           = "${var.url_xsa_webide}"
   url_xsa_mta              = "${var.url_xsa_mta}"
@@ -73,4 +72,7 @@ module "configure_vm" {
   install_webide           = "${var.install_webide}"
   url_cockpit              = "${var.url_cockpit}"
   nic_ip                   = "${module.nic_and_pip_setup.nic_ip}"
+  luns_data                = "${module.vm_and_disk_creation.luns_data}"
+  luns_log                 = "${module.vm_and_disk_creation.luns_log}"
+  luns_shared              = "${module.vm_and_disk_creation.luns_shared}"
 }

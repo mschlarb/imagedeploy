@@ -113,7 +113,6 @@ variable "useHana2" {
 
 variable "hana1_db_mode" {
   description = "The database mode to use if deploying HANA 1. The acceptable values are: single_container, multiple_containers"
-  default     = "multiple_containers"
 }
 
 variable "vm_user" {
@@ -138,4 +137,16 @@ variable "nic_ip" {
 
 variable "ansible_playbook_path" {
   description = "The path to the ansible playbook"
+}
+
+variable "luns_data" {
+  description = "The LUNs for the data disks in Linux device format"
+}
+
+variable "luns_log" {
+  description = "The LUNs for the log disks in Linux device format"
+}
+
+variable "luns_shared" {
+  description = "The LUNs for the shared disks in Linux device format"
 }

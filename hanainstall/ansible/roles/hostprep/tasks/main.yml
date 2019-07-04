@@ -1,7 +1,7 @@
 - name: Create hosts file
   template:
-    src: {{ hosts_src }}
-    dest: {{ hosts_dest }}
+    src: "{{ hosts_src }}"
+    dest: "{{ hosts_dest }}"
     owner: root
     group: root
     mode: "0644"

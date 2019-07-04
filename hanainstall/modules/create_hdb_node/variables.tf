@@ -43,6 +43,7 @@ variable "vnet_subnet_name" {
 
 variable "private_ip_address" {
   description = "The desired private IP address of this HANA database.  If it isn't specified, a dynamic IP will be allocated."
+  default = ""
 }
 
 variable "public_ip_allocation_type" {
@@ -176,4 +177,9 @@ variable "vm_size" {
 
 variable "vm_user" {
   description = "The username of your HANA database VM."
+}
+
+variable "hana1_db_mode" {
+  description = "The database mode to use if deploying HANA 1. The acceptable values are: single_container, multiple_containers"
+  default     = "multiple_containers"
 }

@@ -34,6 +34,9 @@ resource null_resource "mount-disks-and-configure-hana" {
      \"install_webide\": ${var.install_webide}, \
      \"nic_ip\": \"${var.nic_ip}\", \
      \"vm_name\": \"${var.vm_name}\", \
+     \"luns_data\": \"${var.luns_data}\", \
+     \"luns_log\": \"${var.luns_log}\", \
+     \"luns_shared\": \"${var.luns_shared}\", \
      \"url_cockpit\": \"${var.url_cockpit}\" }" \
      ${var.ansible_playbook_path}
      EOT

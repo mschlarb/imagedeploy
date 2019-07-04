@@ -1,0 +1,47 @@
+- name: install required packages
+    yum: state=latest name={{ item }}
+    with_items:
+      - chrony
+      - xfsprogs
+      - libaio
+      - net-tools
+      - bind-utils
+         ...
+      - numactl
+      - tuned-profiles-sap-hana
+
+- name: disable numad
+  service: name=numad state=stopped enabled=no
+
+- name: disable selinux
+  selinux: state=disabled
+
+- name: set number of process to unlimited for sapsys group
+    pam_limits: 
+      domain: 		"@sapsys"
+      limit_item: 	nproc
+      limit_type: 	“{{ item }}”
+      value: 		unlimited
+    with_items:
+        - soft
+        - hard
+
+- name: disable transparent hugepages in grub config
+    lineinfile:
+       dest: /etc/default/grub      
+       line: GRUB_CMDLINE_LINUX_DEFAULT="transparent_hugepage=never"
+    notify: regenerate grub2 conf
+
+...
+
+handlers:
+    - name: regenerate grub2 conf
+      shell: grub2-mkconfig -o /boot/grub2/grub.cfg
+
+- name: setting kernel tunables
+    sysctl: name={{ item.name }} value={{ item.value }} state=present sysctl_set=yes reload=yes
+    with_items:
+      - { name: kernel.msgmni, value: 32768 }
+       ...
+      - { name: vm.swappiness, value: 60 }
+       ...

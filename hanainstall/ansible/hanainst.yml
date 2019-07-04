@@ -12,6 +12,4 @@
   become: true
   become_user: "{{ sap_sid|lower }}adm"
   roles:
-    - { role: shine-install, when: install_xsa == true and install_shine == true }
     - { role: cockpit-install, when: install_xsa == true and install_cockpit == true }
-    - { role: webide-install, when: install_xsa == true and install_webide == true }
