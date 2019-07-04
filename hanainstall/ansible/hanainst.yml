@@ -3,6 +3,7 @@
   become: true
   roles:
     - disk-setup
+    - hostprep
     - saphana-install
     - { role: xsa-install, when: install_xsa == true }
     - { role: cockpit-download, when: install_xsa == true and install_cockpit == true }

@@ -1,19 +1,27 @@
 ---
-disks:
-  /dev/disk/azure/scsi1/lun0 : vg_hana_data_{{ sap_sid }}
-  /dev/disk/azure/scsi1/lun1 : vg_hana_log_{{ sap_sid }}
-  /dev/disk/azure/scsi1/lun2 : vg_hana_shared
-
-logvols:
-  hana_shared:
-    size: 100%FREE
-    vol: vg_hana_shared
-    mountpoint: /hana/shared
+volumes:
   hana_data:
     size: 100%FREE
-    vol: vg_hana_data_{{ sap_sid }}
+    vg: vg_hana_data_{{ sap_sid }}
     mountpoint: /hana/data/{{ sap_sid }}
-  hana_logs:
+    pv:
+    - /dev/disk/azure/scsi1/lun0
+    - /dev/disk/azure/scsi1/lun1
+    - /dev/disk/azure/scsi1/lun2
+    lvopts: --stripes 3 --stripesize 128
+    fsopts: -b size=4096 -d su=128k,sw=3
+  hana_log:
     size: 100%FREE
-    vol: vg_hana_log_{{ sap_sid }}
+    vg: vg_hana_log_{{ sap_sid }}
     mountpoint: /hana/log/{{ sap_sid }}
+    pv:
+    - /dev/disk/azure/scsi1/lun3
+    - /dev/disk/azure/scsi1/lun4
+    lvopts: --stripes 2 --stripesize 32
+    fsopts: -b size=4096 -d su=32k,sw=2
+  hana_shared:
+    size: 100%FREE
+    vg: vg_hana_shared
+    mountpoint: /hana/shared
+    pv:
+    - /dev/disk/azure/scsi1/lun5
