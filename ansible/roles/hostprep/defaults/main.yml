@@ -1,2 +1,8 @@
 hosts_src: "hosts.j2"
 hosts_dest: "/etc/hosts"
+inst_patterns:
+  - sap-hana
+inst_packages:
+  - libopenssl1_0_0
+  - libssh2-1
+  - sapconf

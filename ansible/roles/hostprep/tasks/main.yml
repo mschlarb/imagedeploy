@@ -5,3 +5,40 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Install patterns
+  zypper:
+    name="{{ inst_patterns }}"
+    state=latest
+    type=pattern
+
+- name: Install packages
+  zypper:
+    name="{{ inst_packages }}"
+    state=latest
+
+#Hardening Guide 2.2.1, priority: high
+- name: Prohibit login as root via ssh
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#PermitRootLogin yes'
+    line: PermitRootLogin no
+
+#Hardening Guide 2.2.3, priority: high
+#- name: Configure mail forwarding for root user
+
+#Hardening Guide 2.2.8, priority: high
+- name: Restrict sudo for normal users
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%ADMIN ALL='
+    line: '%ADMIN ALL=(ALL) NOPASSWD: ALL'
+    validate: /usr/sbin/visudo -cf %s
+
+#Hardening Guide 2.2.9, priority: high
+#- name: Adjust default umask
+
+#Hardening Guide 2.2.16, priority: high
+#- name: Adjust sysctl variables to improve network security
+
