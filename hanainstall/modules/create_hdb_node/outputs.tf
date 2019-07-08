@@ -174,3 +174,15 @@ output "vm_size" {
 output "vm_user" {
   value = "${var.vm_user}"
 }
+
+output "luns_data" {
+  value = "${module.vm_and_disk_creation.luns_data}"
+}
+
+output "luns_log" {
+  value = "${module.vm_and_disk_creation.luns_log}"
+}
+
+output "luns_shared" {
+  value = "${module.vm_and_disk_creation.luns_shared}"
+}
