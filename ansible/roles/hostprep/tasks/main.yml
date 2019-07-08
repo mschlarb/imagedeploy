@@ -28,12 +28,31 @@
 #- name: Configure mail forwarding for root user
 
 #Hardening Guide 2.2.8, priority: high
+- name: Create wheel group
+  group:
+    name: wheel
+    state: present
+
+- name: Add users to group
+  user:
+    name: demo
+    groups: wheel
+    append: yes
+
 - name: Restrict sudo for normal users
   lineinfile:
     path: /etc/sudoers
     state: present
-    regexp: '^%ADMIN ALL='
-    line: '%ADMIN ALL=(ALL) NOPASSWD: ALL'
+    regexp: '^ALL\s'
+    line: '#ALL   ALL=(ALL) ALL'
+    validate: /usr/sbin/visudo -cf %s
+
+- name: Enable wheel
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '# %wheel ALL=(ALL) ALL'
+    line: '%wheel ALL=(ALL) ALL'
     validate: /usr/sbin/visudo -cf %s
 
 #Hardening Guide 2.2.9, priority: high
