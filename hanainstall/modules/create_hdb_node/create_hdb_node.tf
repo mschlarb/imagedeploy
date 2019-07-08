@@ -72,7 +72,7 @@ module "configure_vm" {
   install_webide           = "${var.install_webide}"
   url_cockpit              = "${var.url_cockpit}"
   nic_ip                   = "${module.nic_and_pip_setup.nic_ip}"
-  luns_data                = "${module.vm_and_disk_creation.luns_data}"
-  luns_log                 = "${module.vm_and_disk_creation.luns_log}"
-  luns_shared              = "${module.vm_and_disk_creation.luns_shared}"
+  luns_data                = jsonencode(module.vm_and_disk_creation.luns_data)
+  luns_log                 = jsonencode(module.vm_and_disk_creation.luns_log)
+  luns_shared              = jsonencode(module.vm_and_disk_creation.luns_shared)
 }
