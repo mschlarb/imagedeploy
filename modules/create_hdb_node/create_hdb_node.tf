@@ -11,15 +11,12 @@ data "azurerm_subnet" "subnet" {
 
 module "nic_and_pip_setup" {
   source = "../generic_nic_and_pip"
-
   az_resource_group         = "${var.az_resource_group}"
   az_region                 = "${var.az_region}"
   az_domain_name            = "${var.az_domain_name}"
   name                      = "${var.machine_name}"
-  nsg_id                    = "${data.azurerm_subnet.subnet.network_security_group_id}"
   subnet_id                 = "${data.azurerm_subnet.subnet.id}"
   private_ip_address        = "${var.private_ip_address}"
-  public_ip_allocation_type = "${var.public_ip_allocation_type}"
   zone                      = "${var.zone}"
 }
 
