@@ -5,4 +5,4 @@ inst_patterns:
 inst_packages:
   - libopenssl1_0_0
   - libssh2-1
-  - sapconf
+  - saptune

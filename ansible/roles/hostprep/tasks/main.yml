@@ -17,6 +17,11 @@
     name="{{ inst_packages }}"
     state=latest
 
+- name: Configure saptune
+  shell: |
+    saptune daemon start
+    saptune solution apply HANA
+
 #Hardening Guide 2.2.1, priority: high
 - name: Prohibit login as root via ssh
   lineinfile:
@@ -26,38 +31,38 @@
 
 #Hardening Guide 2.2.3, priority: high
 #- name: Configure mail forwarding for root user
-
+#
 #Hardening Guide 2.2.8, priority: high
-- name: Create wheel group
-  group:
-    name: wheel
-    state: present
-
-- name: Add users to group
-  user:
-    name: demo
-    groups: wheel
-    append: yes
-
-- name: Restrict sudo for normal users
-  lineinfile:
-    path: /etc/sudoers
-    state: present
-    regexp: '^ALL\s'
-    line: '#ALL   ALL=(ALL) ALL'
-    validate: /usr/sbin/visudo -cf %s
-
-- name: Enable wheel
-  lineinfile:
-    path: /etc/sudoers
-    state: present
-    regexp: '# %wheel ALL=(ALL) ALL'
-    line: '%wheel ALL=(ALL) ALL'
-    validate: /usr/sbin/visudo -cf %s
-
+#- name: Create wheel group
+#  group:
+#    name: wheel
+#    state: present
+#
+#- name: Add users to group
+#  user:
+#    name: demo
+#    groups: wheel
+#    append: yes
+#
+#- name: Restrict sudo for normal users
+#  lineinfile:
+#    path: /etc/sudoers
+#    state: present
+#    regexp: '^ALL\s'
+#    line: '#ALL   ALL=(ALL) ALL'
+#    validate: /usr/sbin/visudo -cf %s
+#
+#- name: Enable wheel
+#  lineinfile:
+#    path: /etc/sudoers
+#    state: present
+#    regexp: '# %wheel ALL=(ALL) ALL'
+#    line: '%wheel ALL=(ALL) ALL'
+#    validate: /usr/sbin/visudo -cf %s
+#
 #Hardening Guide 2.2.9, priority: high
 #- name: Adjust default umask
-
+#
 #Hardening Guide 2.2.16, priority: high
 #- name: Adjust sysctl variables to improve network security
 
