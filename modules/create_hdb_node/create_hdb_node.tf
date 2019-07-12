@@ -41,7 +41,8 @@ module "vm_and_disk_creation" {
 
 module "configure_vm" {
   source                   = "../playbook-execution"
-  ansible_targethost       = "${module.nic_and_pip_setup.fqdn}"
+#  ansible_targethost       = "${module.nic_and_pip_setup.fqdn}"
+  ansible_targethost       = "${module.nic_and_pip_setup.nic_ip}"
   fqdn                     = "${module.nic_and_pip_setup.fqdn}"
   ansible_playbook_path    = "../../ansible/hanainst.yml"
   az_resource_group        = "${var.az_resource_group}"
