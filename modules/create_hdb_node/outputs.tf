@@ -3,11 +3,11 @@ output "machine_hostname" {
 }
 
 output "ansible_targethost" {
-  value = "${module.nic_and_pip_setup.fqdn}"
+  value = "${module.nic_and_pip_setup.nic_ip}"
 }
 
 output "fqdn" {
-  value = "${module.nic_and_pip_setup.fqdn}"
+  value = "${var.machine_name}.${var.az_domain_name}"
 }
 
 output "hdb_vm_user" {

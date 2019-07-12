@@ -124,7 +124,7 @@ variable "vm_name" {
 }
 
 variable "ansible_targethost" {
-  description = "The FQDN of the PIP of the created VM"
+  description = "The IP of the internal NIC of the created VM"
 }
 
 variable "fqdn" {
