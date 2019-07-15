@@ -6,10 +6,13 @@
     group: root
     mode: "0644"
 
-- name: Set Proxy
-  shell: |
-    yast proxy set http={{ proxy }}
-    yast proxy set https={{ proxy }}
+- name: Set proxy server
+  template:
+    src: "{{ proxy_src }}"
+    dest: "{{ proxy_dest }}"
+    owner: root
+    group: root
+    mode: "0644"
 
 - name: Register OS
   shell: |
