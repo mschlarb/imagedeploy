@@ -6,6 +6,16 @@
     group: root
     mode: "0644"
 
+- name: Set Proxy
+  shell: |
+    yast proxy set http={{ proxy }}
+    yast proxy set https={{ proxy }}
+
+- name: Register OS
+  shell: |
+    SUSEConnect -e {{ reg_user }} -r {{ reg_code }} -u https://scc.suse.com
+    SUSEConnect -p sle-module-legacy/15/x86_64
+
 - name: Install patterns
   zypper:
     name="{{ inst_patterns }}"
@@ -21,48 +31,3 @@
   shell: |
     saptune daemon start
     saptune solution apply HANA
-
-#Hardening Guide 2.2.1, priority: high
-- name: Prohibit login as root via ssh
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^#PermitRootLogin yes'
-    line: PermitRootLogin no
-
-#Hardening Guide 2.2.3, priority: high
-#- name: Configure mail forwarding for root user
-#
-#Hardening Guide 2.2.8, priority: high
-#- name: Create wheel group
-#  group:
-#    name: wheel
-#    state: present
-#
-#- name: Add users to group
-#  user:
-#    name: demo
-#    groups: wheel
-#    append: yes
-#
-#- name: Restrict sudo for normal users
-#  lineinfile:
-#    path: /etc/sudoers
-#    state: present
-#    regexp: '^ALL\s'
-#    line: '#ALL   ALL=(ALL) ALL'
-#    validate: /usr/sbin/visudo -cf %s
-#
-#- name: Enable wheel
-#  lineinfile:
-#    path: /etc/sudoers
-#    state: present
-#    regexp: '# %wheel ALL=(ALL) ALL'
-#    line: '%wheel ALL=(ALL) ALL'
-#    validate: /usr/sbin/visudo -cf %s
-#
-#Hardening Guide 2.2.9, priority: high
-#- name: Adjust default umask
-#
-#Hardening Guide 2.2.16, priority: high
-#- name: Adjust sysctl variables to improve network security
-

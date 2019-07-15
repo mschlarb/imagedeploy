@@ -179,7 +179,14 @@ variable "vm_user" {
   description = "The username of your HANA database VM."
 }
 
-variable "hana1_db_mode" {
-  description = "The database mode to use if deploying HANA 1. The acceptable values are: single_container, multiple_containers"
-  default     = "multiple_containers"
+variable "proxy" {
+  description = "The http and https proxy for downloading packages and SAP installation files."
+}
+
+variable "reg_user" {
+  description = "The user for SUSE registration."
+}
+
+variable "reg_code" {
+  description = "The registration key for SUSE registration."
 }

@@ -3,6 +3,9 @@ hosts_dest: "/etc/hosts"
 inst_patterns:
   - sap-hana
 inst_packages:
+  - gdisk
+  - sg3_utils
+  - lvm2
   - libopenssl1_0_0
   - libssh2-1
   - saptune

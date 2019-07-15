@@ -14,6 +14,15 @@ az_domain_name = "hana-on-azure1"
 # For HANA platform edition, a minimum of 32 GB of RAM is recommended
 vm_size = "Standard_E8s_v3"
 
+# The http and https proxy for downloading packages and SAP installation files.
+proxy = "proxy.domain.corp:8080"
+
+# The user for SUSE registration.
+reg_user = "email@domain.com"
+
+# The registration key for SUSE registration.
+reg_code = "ABC123"
+
 # Path to the public SSH key to be used for authentication.
 sshkey_path_public = "~/.ssh/id_rsa.pub"
 

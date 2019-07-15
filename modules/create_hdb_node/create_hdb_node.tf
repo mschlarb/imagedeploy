@@ -72,4 +72,7 @@ module "configure_vm" {
   luns_data                = jsonencode(module.vm_and_disk_creation.luns_data)
   luns_log                 = jsonencode(module.vm_and_disk_creation.luns_log)
   luns_shared              = jsonencode(module.vm_and_disk_creation.luns_shared)
+  proxy                    = "${var.proxy}"
+  reg_user                 = "${var.reg_user}"
+  reg_code                 = "${var.reg_code}"
 }

@@ -37,6 +37,9 @@ resource null_resource "mount-disks-and-configure-hana" {
      \"luns_data\": ${var.luns_data}, \
      \"luns_log\": ${var.luns_log}, \
      \"luns_shared\": ${var.luns_shared}, \
+     \"proxy\": \"${var.proxy}\", \
+     \"reg_user\": \"${var.reg_user}\", \
+     \"reg_code\": \"${var.reg_code}\", \
      \"url_cockpit\": \"${var.url_cockpit}\" }" \
      ${var.ansible_playbook_path}
      EOT

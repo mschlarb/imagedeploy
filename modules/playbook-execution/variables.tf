@@ -150,3 +150,15 @@ variable "luns_log" {
 variable "luns_shared" {
   description = "The LUNs for the shared disks in Linux device format"
 }
+
+variable "proxy" {
+  description = "The http and https proxy for downloading packages and SAP installation files."
+}
+
+variable "reg_user" {
+  description = "The user for SUSE registration."
+}
+
+variable "reg_code" {
+  description = "The registration key for SUSE registration."
+}
