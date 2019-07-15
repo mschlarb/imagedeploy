@@ -104,7 +104,7 @@ resource "azurerm_virtual_machine" "vm" {
 # Replace with custom image
   storage_image_reference {
     publisher = "SUSE"
-    offer     = "SLES-SAP"
+    offer     = "SLES-SAP-BYOS"
     sku       = "15"
     version   = "latest"
   }
