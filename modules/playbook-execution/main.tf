@@ -17,7 +17,6 @@ resource null_resource "mount-disks-and-configure-hana" {
      \"pwd_os_sidadm\": \"${var.pw_os_sidadm}\", \
      \"pwd_db_system\": \"${var.pw_db_system}\", \
      \"use_hana2\": ${var.useHana2}, \
-     \"hana1_db_mode\": \"${var.hana1_db_mode}\", \
      \"resource_group\": \"${var.az_resource_group}\", \
      \"url_xsa_runtime\": \"${var.url_xsa_runtime}\", \
      \"url_di_core\": \"${var.url_di_core}\", \
