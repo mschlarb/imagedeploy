@@ -1,10 +1,8 @@
-- name: Create hosts file
-  template:
-    src: "{{ hosts_src }}"
-    dest: "{{ hosts_dest }}"
-    owner: root
-    group: root
-    mode: "0644"
+- name: Add host to hosts file
+  lineinfile:
+    path: /etc/hosts
+    insertafter: '^127.0.0.1'
+    line: "{{ nic_ip }}    {{ fqdn }} {{ vm_name }}"
 
 - name: Set proxy server
   template:
