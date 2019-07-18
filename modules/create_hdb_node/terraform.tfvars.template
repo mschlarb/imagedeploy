@@ -47,6 +47,9 @@ storage_disk_sizes_log = [32, 32]
 # List disk sizes in GB for all HANA shared disks.
 storage_disk_sizes_shared = [512]
 
+# The name of the storage account to be used for boot diagnostics of the VM.
+diag_storage = ""
+
 # URL to download SAPCAR binary from.
 url_sap_sapcar_linux = "https://XXX"
 

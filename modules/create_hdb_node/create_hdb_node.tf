@@ -8,7 +8,6 @@ data "azurerm_subnet" "subnet" {
   resource_group_name  = "${var.az_resource_group}"
 }
 
-
 module "nic_and_pip_setup" {
   source = "../generic_nic_and_pip"
   az_resource_group         = "${var.az_resource_group}"
@@ -34,6 +33,7 @@ module "vm_and_disk_creation" {
   vm_user                   = "${var.vm_user}"
   vm_size                   = "${var.vm_size}"
   nic_id                    = "${module.nic_and_pip_setup.nic_id}"
+  diag_storage              = "${var.diag_storage}"
 }
 
 module "configure_vm" {

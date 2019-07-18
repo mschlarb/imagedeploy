@@ -13,6 +13,10 @@ variable "nic_id" {
   description = "The id of the network interface that should be associated with this VM."
 }
 
+variable "diag_storage" {
+  description = "The name of the storage account to be used for boot diagnostics of the VM"
+}
+
 variable "sshkey_path_public" {
   description = "The path on the local machine to where the public key is"
 }

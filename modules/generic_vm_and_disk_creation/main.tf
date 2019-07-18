@@ -1,24 +1,7 @@
-# Generate random text for a unique storage account name.
-resource "random_id" "randomId" {
-  keepers = {
-    # Generate a new id only when a new resource group is defined.
-    resource_group = "${var.az_resource_group}"
-  }
-
-  byte_length = 8
-}
-
-# Create storage account for boot diagnostics
-resource "azurerm_storage_account" "bootdiagstorageaccount" {
-  name                     = "diag${random_id.randomId.hex}"
-  resource_group_name      = "${var.az_resource_group}"
-  location                 = "${var.az_region}"
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-
-  tags = {
-    environment = "Terraform SAP HANA deployment"
-  }
+# Fetch storage account for boot diagnostics
+data "azurerm_storage_account" "diag_storage" {
+  name                = "${var.diag_storage}"
+  resource_group_name = "${var.az_resource_group}"
 }
 
 # All disks that are in the storage_disk_sizes_data list will be created
@@ -116,7 +99,6 @@ resource "azurerm_virtual_machine" "vm" {
 
   os_profile_linux_config {
     disable_password_authentication = true
-
     ssh_keys {
       path     = "/home/${var.vm_user}/.ssh/authorized_keys"
       key_data = "${file("${var.sshkey_path_public}")}"
@@ -125,8 +107,7 @@ resource "azurerm_virtual_machine" "vm" {
 
   boot_diagnostics {
     enabled = "true"
-
-    storage_uri = "${azurerm_storage_account.bootdiagstorageaccount.primary_blob_endpoint}"
+    storage_uri = "${data.azurerm_storage_account.diag_storage.primary_blob_endpoint}"
   }
 
 }
@@ -146,7 +127,7 @@ resource "azurerm_virtual_machine" "vm" {
 #
 #  settings = <<SETTINGS
 #    {
-#        "WADStorageAccountName": "${azurerm_storage_account.bootdiagstorageaccount.name}"
+#        "WADStorageAccountName": "${data.azurerm_storage_account.diag_storage.name}"
 #    }
 #SETTINGS
 #}

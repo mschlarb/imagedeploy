@@ -41,6 +41,10 @@ variable "vnet_subnet_name" {
   default = "default"
 }
 
+variable "diag_storage" {
+  description = "The name of the storage account to be used for boot diagnostics of the VM"
+}
+
 variable "private_ip_address" {
   description = "The desired private IP address of this HANA database.  If it isn't specified, a dynamic IP will be allocated."
   default = ""
