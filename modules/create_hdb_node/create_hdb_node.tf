@@ -36,7 +36,7 @@ module "vm_and_disk_creation" {
   diag_storage              = "${var.diag_storage}"
 }
 
-module "configure_vm" {
+module "ansible" {
   source                   = "../playbook-execution"
   ansible_targethost       = "${module.nic_and_pip_setup.nic_ip}"
   fqdn                     = "${var.machine_name}.${var.az_domain_name}"
@@ -51,9 +51,11 @@ module "configure_vm" {
   pw_os_sapadm             = "${var.pw_os_sapadm}"
   pw_os_sidadm             = "${var.pw_os_sidadm}"
   pw_db_system             = "${var.pw_db_system}"
-  useHana2                 = "${var.useHana2}"
   vm_name                  = "${module.vm_and_disk_creation.machine_hostname}"
   url_xsa_runtime          = "${var.url_xsa_runtime}"
+  url_xsa_monitoring       = "${var.url_xsa_monitoring}"
+  url_xsa_alm              = "${var.url_xsa_alm}"
+  url_xsa_ead              = "${var.url_xsa_ead}"
   url_di_core              = "${var.url_di_core}"
   url_sapui5               = "${var.url_sapui5}"
   url_portal_services      = "${var.url_portal_services}"
@@ -64,14 +66,8 @@ module "configure_vm" {
   pwd_db_xsaadmin          = "${var.pwd_db_xsaadmin}"
   pwd_db_tenant            = "${var.pwd_db_tenant}"
   install_xsa              = "${var.install_xsa}"
-  install_cockpit          = "${var.install_cockpit}"
-  install_webide           = "${var.install_webide}"
-  url_cockpit              = "${var.url_cockpit}"
   nic_ip                   = "${module.nic_and_pip_setup.nic_ip}"
   luns_data                = jsonencode(module.vm_and_disk_creation.luns_data)
   luns_log                 = jsonencode(module.vm_and_disk_creation.luns_log)
   luns_shared              = jsonencode(module.vm_and_disk_creation.luns_shared)
-  proxy                    = "${var.proxy}"
-  reg_user                 = "${var.reg_user}"
-  reg_code                 = "${var.reg_code}"
 }

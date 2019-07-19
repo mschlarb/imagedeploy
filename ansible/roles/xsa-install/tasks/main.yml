@@ -15,24 +15,54 @@
     url: "{{ url_xsa_runtime }}"
     dest: /hana/shared/install/EXTAPPSER00P.SAR
 
-- name: Download DI Core
+- name: Download XSA Monitoring (XSAC_MONITORING)
+  get_url:
+    url: "{{ url_xsa_monitoring }}"
+    dest: /hana/shared/install/
+
+- name: Download XSA ALM (XSAC_ALM_PI_UI)
+  get_url:
+    url: "{{ url_xsa_alm }}"
+    dest: /hana/shared/install/
+
+- name: Download XSA EAD (XSAC_HANA_EA_D)
+  get_url:
+    url: "{{ url_xsa_ead }}"
+    dest: /hana/shared/install/
+
+- name: Download DI Core (XSAC_DI_CORE)
   get_url:
     url: "{{ url_di_core }}"
     dest: /hana/shared/install/
 
-- name: Download SAPUI5
+- name: Download SAPUI5 (XSAC_UI5_FESV4)
   get_url:
     url: "{{ url_sapui5 }}"
     dest: /hana/shared/install/
 
-- name: Download Portal Services
+- name: Download Portal Services (XSAC_PORTAL_SERV)
   get_url:
     url: "{{ url_portal_services }}"
     dest: /hana/shared/install/
 
-- name: Download XS Services
+- name: Download XS Services (XSAC_SERVICES)
   get_url:
     url: "{{ url_xs_services }}"
+    dest: /hana/shared/install/
+
+- name: Download HRTT (XSAC_HRTT)
+  get_url:
+    url: "{{ url_xsa_hrtt }}"
+    dest: /hana/shared/install/
+  
+- name: Download WebIDE (XSAC_SAP_WEB_IDE)
+  get_url:
+    url: "{{ url_xsa_webide }}"
+    dest: /hana/shared/install/
+
+- name: Download MTA extension
+  get_url:
+    url: "{{ url_xsa_mta }}"
     dest: /hana/shared/install/
 
 - name: Extract XSA Runtime
@@ -42,6 +72,6 @@
     creates: /hana/shared/install/EXTAPPSER00P
 
 - name: Run hdblcm to install XSA components
-  shell: "pwd=$(<hdblcm_xsa.passwords); rm hdblcm_xsa.passwords; echo $pwd | SAP_HANA_DATABASE/hdblcm --component_root=/hana/shared/install/EXTAPPSER00P --configfile=hdblcm_xsa.cfg --batch --read_password_from_stdin=xml"
+  shell: "pwd=$(<hdblcm_xsa.passwords); rm hdblcm_xsa.passwords; echo $pwd | SAP_HANA_DATABASE/hdblcm --configfile=hdblcm_xsa.cfg --batch --read_password_from_stdin=xml"
   args:
     chdir: /hana/shared/install

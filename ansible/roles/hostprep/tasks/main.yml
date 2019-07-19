@@ -4,18 +4,8 @@
     insertafter: '^127.0.0.1'
     line: "{{ nic_ip }}    {{ fqdn }} {{ vm_name }}"
 
-- name: Set proxy server
-  template:
-    src: "{{ proxy_src }}"
-    dest: "{{ proxy_dest }}"
-    owner: root
-    group: root
-    mode: "0644"
-
-- name: Register OS
-  shell: |
-    SUSEConnect -e {{ reg_user }} -r {{ reg_code }} -u https://scc.suse.com
-    SUSEConnect -p sle-module-legacy/15/x86_64
+- name: Register SUSE Cloud SMT
+  command: /usr/sbin/registercloudguest --force-new
 
 - name: Install patterns
   zypper:

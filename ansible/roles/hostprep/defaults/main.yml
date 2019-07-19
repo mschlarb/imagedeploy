@@ -1,5 +1,3 @@
-proxy_src: "proxy.j2"
-proxy_dest: "/etc/sysconfig/proxy"
 inst_patterns:
   - sap-hana
 inst_packages:

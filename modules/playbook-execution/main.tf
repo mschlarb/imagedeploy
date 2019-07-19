@@ -1,5 +1,5 @@
 # This is how we call Ansible and pass in variables from Terraform.
-resource null_resource "mount-disks-and-configure-hana" {
+resource null_resource "automation-execution" {
   provisioner "local-exec" {
     command = <<EOT
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES \
@@ -16,9 +16,11 @@ resource null_resource "mount-disks-and-configure-hana" {
      \"pwd_os_sapadm\": \"${var.pw_os_sapadm}\", \
      \"pwd_os_sidadm\": \"${var.pw_os_sidadm}\", \
      \"pwd_db_system\": \"${var.pw_db_system}\", \
-     \"use_hana2\": ${var.useHana2}, \
      \"resource_group\": \"${var.az_resource_group}\", \
      \"url_xsa_runtime\": \"${var.url_xsa_runtime}\", \
+     \"url_xsa_monitoring\": \"${var.url_xsa_monitoring}\", \
+     \"url_xsa_alm\": \"${var.url_xsa_alm}\", \
+     \"url_xsa_ead\": \"${var.url_xsa_ead}\", \
      \"url_di_core\": \"${var.url_di_core}\", \
      \"url_sapui5\": \"${var.url_sapui5}\", \
      \"url_portal_services\": \"${var.url_portal_services}\", \
@@ -29,17 +31,11 @@ resource null_resource "mount-disks-and-configure-hana" {
      \"pwd_db_xsaadmin\": \"${var.pwd_db_xsaadmin}\", \
      \"pwd_db_tenant\": \"${var.pwd_db_tenant}\", \
      \"install_xsa\": ${var.install_xsa}, \
-     \"install_cockpit\": ${var.install_cockpit}, \
-     \"install_webide\": ${var.install_webide}, \
      \"nic_ip\": \"${var.nic_ip}\", \
      \"vm_name\": \"${var.vm_name}\", \
      \"luns_data\": ${var.luns_data}, \
      \"luns_log\": ${var.luns_log}, \
-     \"luns_shared\": ${var.luns_shared}, \
-     \"proxy\": \"${var.proxy}\", \
-     \"reg_user\": \"${var.reg_user}\", \
-     \"reg_code\": \"${var.reg_code}\", \
-     \"url_cockpit\": \"${var.url_cockpit}\" }" \
+     \"luns_shared\": ${var.luns_shared} }" \
      ${var.ansible_playbook_path}
      EOT
   }

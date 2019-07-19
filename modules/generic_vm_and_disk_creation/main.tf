@@ -13,7 +13,7 @@ resource "azurerm_managed_disk" "disk_data" {
   resource_group_name  = "${var.az_resource_group}"
   disk_size_gb         = "${var.storage_disk_sizes_data[count.index]}"
   create_option        = "Empty"
-  zones = ["${var.zone}"]
+  zones = "${var.zone}"
 }
 
 # All of the disks created above will now be attached to the VM
@@ -34,7 +34,7 @@ resource "azurerm_managed_disk" "disk_log" {
   resource_group_name  = "${var.az_resource_group}"
   disk_size_gb         = "${var.storage_disk_sizes_log[count.index]}"
   create_option        = "Empty"
-  zones = ["${var.zone}"]
+  zones = "${var.zone}"
 }
 
 # All of the disks created above will now be attached to the VM
@@ -56,7 +56,7 @@ resource "azurerm_managed_disk" "disk_shared" {
   resource_group_name  = "${var.az_resource_group}"
   disk_size_gb         = "${var.storage_disk_sizes_shared[count.index]}"
   create_option        = "Empty"
-  zones = ["${var.zone}"]
+  zones = "${var.zone}"
 }
 
 # All of the disks created above will now be attached to the VM
@@ -76,7 +76,7 @@ resource "azurerm_virtual_machine" "vm" {
   network_interface_ids         = ["${var.nic_id}"]
   vm_size                       = "${var.vm_size}"
   delete_os_disk_on_termination = "true"
-  zones = ["${var.zone}"]
+  zones = "${var.zone}"
 
   storage_os_disk {
     name              = "${var.machine_name}-OsDisk"
@@ -87,7 +87,7 @@ resource "azurerm_virtual_machine" "vm" {
 # Replace with custom image
   storage_image_reference {
     publisher = "SUSE"
-    offer     = "SLES-SAP-BYOS"
+    offer     = "SLES-SAP"
     sku       = "15"
     version   = "latest"
   }

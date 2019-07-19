@@ -2,18 +2,8 @@ variable "az_resource_group" {
   description = "Which azure resource group to deploy the HANA setup into.  i.e. <myResourceGroup>"
 }
 
-variable "install_cockpit" {
-  description = "Flag to determine whether to install Cockpit on the host VM"
-  default     = false
-}
-
 variable "install_xsa" {
   description = "Flag to determine whether to install XSA on the host VM"
-  default     = false
-}
-
-variable "install_webide" {
-  description = "Flag that determines whether to install WebIDE on the host"
   default     = false
 }
 
@@ -51,11 +41,6 @@ variable "sshkey_path_private" {
   description = "The path on the local machine to where the private key is"
 }
 
-variable "url_cockpit" {
-  description = "URL for HANA Cockpit"
-  default     = ""
-}
-
 variable "url_di_core" {
   description = "URL for DI Core"
   default     = ""
@@ -74,6 +59,19 @@ variable "url_sap_hdbserver" {
 variable "url_sap_sapcar" {
   type        = "string"
   description = "The URL that points to the SAPCAR bits"
+}
+
+variable "url_xsa_monitoring" {
+  description = "URL for XSA Monitoring"
+  default     = ""
+}
+
+variable "url_xsa_alm" {
+  description = "URL for XS Advanced Application Lifecycle Management xsac_alm_pi_ui"
+}
+
+variable "url_xsa_ead" {
+  description = "URL for Enterprise Architecture Designer xsac_hana_ea_d"
 }
 
 variable "url_sapui5" {
@@ -104,11 +102,6 @@ variable "url_xsa_webide" {
 variable "url_xsa_mta" {
   description = "URL for MTA ext"
   default     = ""
-}
-
-variable "useHana2" {
-  description = "If this is set to true, then, ports specifically for HANA 2.0 will be opened."
-  default     = true
 }
 
 variable "vm_user" {
@@ -145,16 +138,4 @@ variable "luns_log" {
 
 variable "luns_shared" {
   description = "The LUNs for the shared disks in Linux device format"
-}
-
-variable "proxy" {
-  description = "The http and https proxy for downloading packages and SAP installation files."
-}
-
-variable "reg_user" {
-  description = "The user for SUSE registration."
-}
-
-variable "reg_code" {
-  description = "The registration key for SUSE registration."
 }

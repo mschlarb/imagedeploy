@@ -30,16 +30,8 @@ output "az_resource_group" {
   value = "${var.az_resource_group}"
 }
 
-output "install_cockpit" {
-  value = "${var.install_cockpit}"
-}
-
 output "install_xsa" {
   value = "${var.install_xsa}"
-}
-
-output "install_webide" {
-  value = "${var.install_webide}"
 }
 
 output "az_domain_name" {
@@ -60,10 +52,6 @@ output "vnet_subnet_name" {
 
 output "private_ip_address" {
   value = "${module.nic_and_pip_setup.nic_ip}"
-}
-
-output "public_ip_allocation_type" {
-  value = "${var.public_ip_allocation_type}"
 }
 
 output "pw_db_system" {
@@ -119,10 +107,6 @@ output "zone" {
   value = "${var.zone}"
 }
 
-output "url_cockpit" {
-  value = "${var.url_cockpit}"
-}
-
 output "url_di_core" {
   value = "${var.url_di_core}"
 }
@@ -161,10 +145,6 @@ output "url_xsa_webide" {
 
 output "url_xsa_mta" {
   value = "${var.url_xsa_mta}"
-}
-
-output "useHana2" {
-  value = "${var.useHana2}"
 }
 
 output "vm_size" {

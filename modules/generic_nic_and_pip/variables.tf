@@ -12,18 +12,10 @@ variable "name" {
   description = "A name that will be used to identify the resource this NIC and PIP are related to."
 }
 
-#variable "nsg_id" {
-#  description = "The NSG id for the NSG that will control this VM."
-#}
-
 variable "private_ip_address" {
   description = "The desired private IP address of this NIC.  If it isn't specified, a dynamic IP will be allocated."
   default     = ""
 }
-
-#variable "public_ip_allocation_type" {
-#  description = "Defines whether the IP address is static or dynamic. Options are Static or Dynamic."
-#}
 
 variable "subnet_id" {
   description = "The subnet that this node needs to be on"

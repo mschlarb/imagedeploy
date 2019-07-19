@@ -4,10 +4,10 @@
 component_medium=
 
 # Comma separated list of component directories
-component_dirs=
+component_dirs=/hana/shared/install
 
 # Directory root to search for components
-component_root=
+component_root=/hana/shared/install/EXTAPPSER00P
 
 # Use single master password for all users, created during installation ( Default: n )
 use_master_password=n
@@ -50,8 +50,8 @@ checkmnt=
 # Installation Path ( Default: /hana/shared )
 sapmnt=/hana/shared
 
-# Local Host Name ( Default: sh2-db0 )
-hostname={{ inventory_hostname }}
+# Local Host Name
+hostname=
 
 # Install SSH Key ( Default: y )
 install_ssh_key=y
@@ -254,13 +254,13 @@ xs_sap_space_user_id=
 xs_customer_space_user_id=
 
 # XS Advanced Components
-xs_components=
+xs_components=xsac_di_core,xsac_portal_serv,xsac_services,xsac_ui5_fesv4,xsac_monitoring,xsac_alm_pi_ui,xsac_hana_ea_d,xsac_hrtt,xsac_sap_web_ide             
 
 # Do not start the selected XS Advanced components after installation ( Default: none )
 xs_components_nostart=none
 
 # XS Advanced Components Configurations
-xs_components_cfg=
+xs_components_cfg=/hana/shared/install
 
 # XS Advanced Certificate
 xs_cert_pem=

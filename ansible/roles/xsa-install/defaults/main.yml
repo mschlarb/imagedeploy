@@ -2,6 +2,15 @@
 # URL for XS Advanced Runtime
 url_xsa_runtime:
 
+# URL for XSA Monitoring
+url_xsa_monitoring:
+
+# URL for XSA ALM
+url_xsa_alm:
+
+# URL for XSA EAD
+url_xsa_ead:
+
 # URL for DI Core
 url_di_core:
 
