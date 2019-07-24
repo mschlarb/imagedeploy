@@ -6,10 +6,6 @@ output "ansible_targethost" {
   value = "${module.nic_and_pip_setup.nic_ip}"
 }
 
-output "fqdn" {
-  value = "${var.machine_name}.${var.az_domain_name}"
-}
-
 output "hdb_vm_user" {
   value = "${var.vm_user}"
 }
@@ -107,44 +103,28 @@ output "zone" {
   value = "${var.zone}"
 }
 
-output "url_di_core" {
-  value = "${var.url_di_core}"
+output "url_prefix" {
+  value = var.url_prefix
 }
 
-output "url_portal_services" {
-  value = "${var.url_portal_services}"
+output "file_sapcar" {
+  value = var.file_sapcar
 }
 
-output "url_sap_hdbserver" {
-  value = "${var.url_sap_hdbserver}"
+output "file_hdbserver" {
+  value = var.file_hdbserver
 }
 
-output "url_sap_sapcar_linux" {
-  value = "${var.url_sap_sapcar_linux}"
+output "file_xsa" {
+  value = var.file_xsa
 }
 
-output "url_sapui5" {
-  value = "${var.url_sapui5}"
+output "list_xsa_files" {
+  value = var.list_xsa_files
 }
 
-output "url_xs_services" {
-  value = "${var.url_xs_services}"
-}
-
-output "url_xsa_runtime" {
-  value = "${var.url_xsa_runtime}"
-}
-
-output "url_xsa_hrtt" {
-  value = "${var.url_xsa_hrtt}"
-}
-
-output "url_xsa_webide" {
-  value = "${var.url_xsa_webide}"
-}
-
-output "url_xsa_mta" {
-  value = "${var.url_xsa_mta}"
+output "list_xsa_components" {
+  value = var.list_xsa_components
 }
 
 output "vm_size" {

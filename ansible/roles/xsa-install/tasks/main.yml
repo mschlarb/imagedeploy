@@ -15,54 +15,10 @@
     url: "{{ url_xsa_runtime }}"
     dest: /hana/shared/install/EXTAPPSER00P.SAR
 
-- name: Download XSA Monitoring (XSAC_MONITORING)
+- name: Download XSA Components
+  with_items: "{{ list_xsa_files }}"
   get_url:
-    url: "{{ url_xsa_monitoring }}"
-    dest: /hana/shared/install/
-
-- name: Download XSA ALM (XSAC_ALM_PI_UI)
-  get_url:
-    url: "{{ url_xsa_alm }}"
-    dest: /hana/shared/install/
-
-- name: Download XSA EAD (XSAC_HANA_EA_D)
-  get_url:
-    url: "{{ url_xsa_ead }}"
-    dest: /hana/shared/install/
-
-- name: Download DI Core (XSAC_DI_CORE)
-  get_url:
-    url: "{{ url_di_core }}"
-    dest: /hana/shared/install/
-
-- name: Download SAPUI5 (XSAC_UI5_FESV4)
-  get_url:
-    url: "{{ url_sapui5 }}"
-    dest: /hana/shared/install/
-
-- name: Download Portal Services (XSAC_PORTAL_SERV)
-  get_url:
-    url: "{{ url_portal_services }}"
-    dest: /hana/shared/install/
-
-- name: Download XS Services (XSAC_SERVICES)
-  get_url:
-    url: "{{ url_xs_services }}"
-    dest: /hana/shared/install/
-
-- name: Download HRTT (XSAC_HRTT)
-  get_url:
-    url: "{{ url_xsa_hrtt }}"
-    dest: /hana/shared/install/
-  
-- name: Download WebIDE (XSAC_SAP_WEB_IDE)
-  get_url:
-    url: "{{ url_xsa_webide }}"
-    dest: /hana/shared/install/
-
-- name: Download MTA extension
-  get_url:
-    url: "{{ url_xsa_mta }}"
+    url: "{{ url_prefix }}{{ item }}"
     dest: /hana/shared/install/
 
 - name: Extract XSA Runtime

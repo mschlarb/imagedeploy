@@ -239,7 +239,7 @@ prod_space_name=PROD
 xs_routing_mode=ports
 
 # XS Advanced Domain Name (see SAP Note 2245631)
-xs_domain_name={{ fqdn }}
+xs_domain_name={{ vm_name }}.{{ fqdn }}
 
 # Run Applications in SAP Space with Separate OS User (y/n) ( Default: y )
 xs_sap_space_isolation=y
@@ -254,7 +254,7 @@ xs_sap_space_user_id=
 xs_customer_space_user_id=
 
 # XS Advanced Components
-xs_components=xsac_di_core,xsac_portal_serv,xsac_services,xsac_ui5_fesv4,xsac_monitoring,xsac_alm_pi_ui,xsac_hana_ea_d,xsac_hrtt,xsac_sap_web_ide             
+xs_components={{ list_xsa_components }}
 
 # Do not start the selected XS Advanced components after installation ( Default: none )
 xs_components_nostart=none

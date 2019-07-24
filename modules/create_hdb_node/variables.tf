@@ -93,56 +93,31 @@ variable "zone" {
   default = null
 }
 
-variable "url_di_core" {
-  description = "URL for DI Core"
+variable "url_prefix" {
+  description = "URL prefix for all downloads"
 }
 
-variable "url_portal_services" {
-  description = "URL for Portal Services"
+variable "file_sapcar" {
+  description = "Filename for SAPCAR for Linux to run on the bastion host"
 }
 
-variable "url_sap_hdbserver" {
-  description = "The URL that points to the HDB server 122.17 bits"
+variable "file_hdbserver" {
+  description = "Filename for HANA DB installation"
 }
 
-variable "url_sap_sapcar_linux" {
-  description = "URL for SAPCAR for Linux to run on the bastion host"
+variable "file_xsa" {
+  description = "Filename for XSA installation"
+  default = ""
 }
 
-variable "url_xsa_monitoring" {
-  description = "URL for XSA Monitoring"
+variable "list_xsa_files" {
+  description = "A list of filenames for XSA components"
+  default = [""]
 }
 
-variable "url_xsa_alm" {
-  description = "URL for XS Advanced Application Lifecycle Management xsac_alm_pi_ui"
-}
-
-variable "url_xsa_ead" {
-  description = "URL for Enterprise Architecture Designer xsac_hana_ea_d"
-}
-
-variable "url_sapui5" {
-  description = "URL for SAPUI5"
-}
-
-variable "url_xs_services" {
-  description = "URL for XS Services"
-}
-
-variable "url_xsa_runtime" {
-  description = "URL for XSA runtime"
-}
-
-variable "url_xsa_hrtt" {
-  description = "URL for HRTT"
-}
-
-variable "url_xsa_webide" {
-  description = "URL for WebIDE"
-}
-
-variable "url_xsa_mta" {
-  description = "URL for MTA ext"
+variable "list_xsa_components" {
+  description = "A list of component names"
+  default = ""
 }
 
 variable "vm_size" {

@@ -2,7 +2,7 @@
 machine_name = "hanadb01"
 
 # The desired private IP address of this HANA database. Leave empty to assign dynamic IP address.
-private_ip_address_hdb = ""
+private_ip_address = ""
 
 # Azure region to deploy resource in.
 az_region = "westus2"
@@ -56,47 +56,30 @@ storage_disk_sizes_shared = [512]
 # If write accelerator for HANA log disks is enabled. Only works with certain types of VMs.
 write_accelerator = false
 
-# UNCOMMENT only if you want to explicitly set an availability zone (1, 2 or 3).
-# zone = [1]
+# UNCOMMENT only if you want to explicitly set an availability zone (replace [X] with [1], [2] or [3]).
+# zone = [X]
 
-# URL for SAPCAR.
-url_sap_sapcar_linux = "https://XXX"
+# URL prefix for all downloads
+url_prefix = "https://storageaccountname.blob.core.windows.net/sapbits/"
+
+# Filename of SAPCAR.
+file_sapcar = "SAPCAR_1211-80000935.EXE"
 
 # URL for HANA DB server package SAR.
-url_sap_hdbserver = "https://XXX"
+file_hdbserver = "IMDB_SERVER20_037_0-80002031.SAR"
 
 # URL for XSA installation package SAR.
-url_xsa_runtime = "https://XXX"
+file_xsa = "EXTAPPSER00P_102-70001316.SAR"
 
-# URL for Monitoring (Advanced Administration Tools XSAC_MONITORING).
-url_xsa_monitoring = "https://XXX"
+# A list of filenames for XSA components.
+# It is recommended to download all potential XSA component files in order to provide necessary installation components
+# Please stick to the given syntax!
+list_xsa_files = ["XSACMONITORING07_1-70002324.ZIP","XSACALMPIUI12_6-80002271.ZIP","XSACDEVXDI12_9-70001255.ZIP","XSACHANAEAD04P_7-70002231.ZIP","XSACSERVICES06_15-70002361.ZIP","XSACPORTALSERV03_2-80002098.ZIP","XSACUI5FESV452_28-70003351.ZIP","XSACHRTT09_33-70002322.ZIP","XSACSAPWEBIDE03_68-80002257.ZIP","sap-xsac-devx-4.3.23.mtaext"]
 
-# URL for ALM (Advanced Application Lifecycle Management XSAC_ALM_PI_UI).
-url_xsa_alm = "https://XXX"
-
-# URL for EAD (Enterprise Architecture Designer XSAC_HANA_EA_D).
-url_xsa_ead = "https://XXX"
-
-# URL for DI Core (Development Infrastructure XSAC_DI_CORE).
-url_di_core = "https://XXX"
-
-# URL for XS Services (XSAC_SERVICES).
-url_xs_services = "https://XXX"
-
-# URL for Portal Services (XSAC_PORTAL_SERV).
-url_portal_services = "https://XXX"
-
-# URL for SAPUI5 (XSAC_UI5_FESV4).
-url_sapui5 = "https://XXX"
-
-# URL for HRTT (Runtime Tools XSAC_HRTT).
-url_xsa_hrtt = "https://XXX"
-
-# URL for WebIDE (Integrated Development Environment XSAC_SAP_WEB_IDE).
-url_xsa_webide = "https://XXX"
-
-# URL for MTA extension.
-url_xsa_mta = "https://XXX"
+# A list of all XSA components that should be installed.
+# Reference: https://help.sap.com/viewer/2c1988d620e04368aa4103bf26f17727/2.0.03/en-US/30edce93cbf74613af667423932ab63a.html
+# Please stick to the given syntax!
+list_xsa_components = "xsac_di_core,xsac_portal_serv,xsac_services,xsac_ui5_fesv4,xsac_monitoring,xsac_alm_pi_ui,xsac_hana_ea_d,xsac_hrtt,xsac_sap_web_ide"
 
 # Password for the OS sapadm user.
 pw_os_sapadm = "XXX"

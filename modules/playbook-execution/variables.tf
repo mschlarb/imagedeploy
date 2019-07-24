@@ -41,67 +41,28 @@ variable "sshkey_path_private" {
   description = "The path on the local machine to where the private key is"
 }
 
-variable "url_di_core" {
-  description = "URL for DI Core"
-  default     = ""
+variable "url_prefix" {
+  description = "URL prefix for all downloads"
 }
 
-variable "url_portal_services" {
-  description = "URL for Portal Services"
-  default     = ""
+variable "file_sapcar" {
+  description = "Filename for SAPCAR for Linux to run on the bastion host"
 }
 
-variable "url_sap_hdbserver" {
-  type        = "string"
-  description = "The URL that points to the HDB server 122.17 bits"
+variable "file_hdbserver" {
+  description = "Filename for HANA DB installation"
 }
 
-variable "url_sap_sapcar" {
-  type        = "string"
-  description = "The URL that points to the SAPCAR bits"
+variable "file_xsa" {
+  description = "Filename for XSA installation"
 }
 
-variable "url_xsa_monitoring" {
-  description = "URL for XSA Monitoring"
-  default     = ""
+variable "list_xsa_files" {
+  description = "A list of filenames for XSA components"
 }
 
-variable "url_xsa_alm" {
-  description = "URL for XS Advanced Application Lifecycle Management xsac_alm_pi_ui"
-}
-
-variable "url_xsa_ead" {
-  description = "URL for Enterprise Architecture Designer xsac_hana_ea_d"
-}
-
-variable "url_sapui5" {
-  description = "URL for SAPUI5"
-  default     = ""
-}
-
-variable "url_xs_services" {
-  description = "URL for XS Services"
-  default     = ""
-}
-
-variable "url_xsa_runtime" {
-  description = "URL for XSA runtime"
-  default     = ""
-}
-
-variable "url_xsa_hrtt" {
-  description = "URL for HRTT"
-  default     = ""
-}
-
-variable "url_xsa_webide" {
-  description = "URL for WebIDE"
-  default     = ""
-}
-
-variable "url_xsa_mta" {
-  description = "URL for MTA ext"
-  default     = ""
+variable "list_xsa_components" {
+  description = "A list of component names"
 }
 
 variable "vm_user" {
