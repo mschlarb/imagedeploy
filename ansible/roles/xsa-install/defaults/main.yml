@@ -19,3 +19,5 @@ pwd_db_xsaadmin:
 
 # Password for SYSTEM user (tenant DB)
 pwd_db_tenant:
+
+fqdnhost: "{% if public_ip %} {{ fqdn }} {% else %} {{ vm_name }}.{{ fqdn }} {% endif %}"

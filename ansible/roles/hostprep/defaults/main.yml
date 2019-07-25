@@ -1,5 +1,6 @@
 inst_patterns:
   - sap-hana
+
 inst_packages:
   - gdisk
   - sg3_utils
@@ -7,3 +8,5 @@ inst_packages:
   - libopenssl1_0_0
   - libssh2-1
   - saptune
+
+fqdnhost: "{% if public_ip %} {{ fqdn }} {% else %} {{ vm_name }}.{{ fqdn }} {% endif %}"

@@ -4,6 +4,9 @@ machine_name = "hanadb01"
 # The desired private IP address of this HANA database. Leave empty to assign dynamic IP address.
 private_ip_address = ""
 
+# If the VM should have a dynamic public IP.
+public_ip = false
+
 # Azure region to deploy resource in.
 az_region = "westus2"
 

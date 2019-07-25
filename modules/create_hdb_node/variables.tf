@@ -127,3 +127,7 @@ variable "vm_size" {
 variable "vm_user" {
   description = "The username of your HANA database VM."
 }
+
+variable "public_ip" {
+  description = "If the VM should have a public IP"
+}

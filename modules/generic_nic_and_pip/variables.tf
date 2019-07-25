@@ -25,6 +25,10 @@ variable "zone" {
   description = "Specify the availability zone"
 }
 
+variable "public_ip" {
+  description = "If the VM should have a public IP"
+}
+
 locals {
   dynamic      = "Dynamic"
   empty_string = ""

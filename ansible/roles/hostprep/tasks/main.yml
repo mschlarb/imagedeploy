@@ -2,7 +2,7 @@
   lineinfile:
     path: /etc/hosts
     insertafter: '^127.0.0.1'
-    line: "{{ nic_ip }}    {{ vm_name }}.{{ fqdn }} {{ vm_name }}"
+    line: "{{ nic_ip }}    {{ fqdnhost }} {{ vm_name }}"
 
 - name: Register SUSE Cloud SMT
   command: /usr/sbin/registercloudguest --force-new
