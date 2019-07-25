@@ -23,6 +23,6 @@ resource "azurerm_network_interface" "nic" {
 
     private_ip_address_allocation           = var.private_ip_address != local.empty_string ? local.static : local.dynamic
     private_ip_address                      = var.private_ip_address
-    public_ip_address_id                    = var.public_ip ? azurerm_public_ip.pip.id : null
+    public_ip_address_id                    = var.public_ip ? azurerm_public_ip.pip[0].id : null
   }
 }

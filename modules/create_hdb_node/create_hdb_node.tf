@@ -16,6 +16,7 @@ module "nic_and_pip_setup" {
   name                      = var.machine_name
   subnet_id                 = data.azurerm_subnet.subnet.id
   private_ip_address        = var.private_ip_address
+  public_ip                 = var.public_ip
   zone                      = var.zone
 }
 
@@ -60,6 +61,7 @@ module "ansible" {
   pwd_db_tenant            = var.pwd_db_tenant
   install_xsa              = var.install_xsa
   nic_ip                   = module.nic_and_pip_setup.nic_ip
+  public_ip                = var.public_ip
   luns_data                = jsonencode(module.vm_and_disk_creation.luns_data)
   luns_log                 = jsonencode(module.vm_and_disk_creation.luns_log)
   luns_shared              = jsonencode(module.vm_and_disk_creation.luns_shared)

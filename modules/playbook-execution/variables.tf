@@ -100,3 +100,7 @@ variable "luns_log" {
 variable "luns_shared" {
   description = "The LUNs for the shared disks in Linux device format"
 }
+
+variable "public_ip" {
+  description = "If the VM should have a public IP"
+}

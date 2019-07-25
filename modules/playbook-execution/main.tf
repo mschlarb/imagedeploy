@@ -15,6 +15,7 @@ resource null_resource "automation-execution" {
      \"list_xsa_files\": ${var.list_xsa_files}, \
      \"list_xsa_components\": \"${var.list_xsa_components}\", \
      \"fqdn\": \"${var.fqdn}\", \
+     \"public_ip\": ${var.public_ip}, \
      \"sap_sid\": \"${var.sap_sid}\", \
      \"sap_instancenum\": \"${var.sap_instancenum}\", \
      \"pwd_os_sapadm\": \"${var.pw_os_sapadm}\", \

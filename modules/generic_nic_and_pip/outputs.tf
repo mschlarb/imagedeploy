@@ -1,6 +1,6 @@
 output "fqdn" {
   description = "The fully qualified domain name associated with the public IP that was created."
-  value       = var.public_ip ? azurerm_public_ip.pip.fqdn : null
+  value       = var.public_ip ? azurerm_public_ip.pip[0].fqdn : null
 }
 
 output "nic_id" {
