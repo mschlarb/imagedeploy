@@ -2,18 +2,8 @@ variable "az_resource_group" {
   description = "Which azure resource group to deploy the HANA setup into.  i.e. <myResourceGroup>"
 }
 
-variable "install_cockpit" {
-  description = "Flag to determine whether to install Cockpit on the host VM"
-  default     = false
-}
-
 variable "install_xsa" {
   description = "Flag to determine whether to install XSA on the host VM"
-  default     = false
-}
-
-variable "install_webide" {
-  description = "Flag that determines whether to install WebIDE on the host"
   default     = false
 }
 
@@ -51,68 +41,28 @@ variable "sshkey_path_private" {
   description = "The path on the local machine to where the private key is"
 }
 
-variable "url_cockpit" {
-  description = "URL for HANA Cockpit"
-  default     = ""
+variable "url_prefix" {
+  description = "URL prefix for all downloads"
 }
 
-variable "url_di_core" {
-  description = "URL for DI Core"
-  default     = ""
+variable "file_sapcar" {
+  description = "Filename for SAPCAR for Linux to run on the bastion host"
 }
 
-variable "url_portal_services" {
-  description = "URL for Portal Services"
-  default     = ""
+variable "file_hdbserver" {
+  description = "Filename for HANA DB installation"
 }
 
-variable "url_sap_hdbserver" {
-  type        = "string"
-  description = "The URL that points to the HDB server 122.17 bits"
+variable "file_xsa" {
+  description = "Filename for XSA installation"
 }
 
-variable "url_sap_sapcar" {
-  type        = "string"
-  description = "The URL that points to the SAPCAR bits"
+variable "list_xsa_files" {
+  description = "A list of filenames for XSA components"
 }
 
-variable "url_sapui5" {
-  description = "URL for SAPUI5"
-  default     = ""
-}
-
-variable "url_xs_services" {
-  description = "URL for XS Services"
-  default     = ""
-}
-
-variable "url_xsa_runtime" {
-  description = "URL for XSA runtime"
-  default     = ""
-}
-
-variable "url_xsa_hrtt" {
-  description = "URL for HRTT"
-  default     = ""
-}
-
-variable "url_xsa_webide" {
-  description = "URL for WebIDE"
-  default     = ""
-}
-
-variable "url_xsa_mta" {
-  description = "URL for MTA ext"
-  default     = ""
-}
-
-variable "useHana2" {
-  description = "If this is set to true, then, ports specifically for HANA 2.0 will be opened."
-  default     = true
-}
-
-variable "hana1_db_mode" {
-  description = "The database mode to use if deploying HANA 1. The acceptable values are: single_container, multiple_containers"
+variable "list_xsa_components" {
+  description = "A list of component names"
 }
 
 variable "vm_user" {
@@ -124,7 +74,7 @@ variable "vm_name" {
 }
 
 variable "ansible_targethost" {
-  description = "The FQDN of the PIP of the created VM"
+  description = "The IP of the internal NIC of the created VM"
 }
 
 variable "fqdn" {
@@ -149,4 +99,8 @@ variable "luns_log" {
 
 variable "luns_shared" {
   description = "The LUNs for the shared disks in Linux device format"
+}
+
+variable "public_ip" {
+  description = "If the VM should have a public IP"
 }

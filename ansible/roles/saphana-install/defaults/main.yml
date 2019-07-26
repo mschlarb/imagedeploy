@@ -1,9 +1,9 @@
 ---
 # replace with download URL for SAPCAR
-url_sapcar: 
+url_sapcar: "{{ url_prefix }}{{ file_sapcar }}"
 
 # replace with download URL for HDB server
-url_hdbserver: 
+url_hdbserver: "{{ url_prefix }}{{ file_hdbserver }}"
 
 sap_sid: 
 sap_instancenum: 
@@ -12,5 +12,3 @@ sap_hostname: "{{ ansible_hostname.lower() }}"
 pwd_os_sapadm: 
 pwd_os_sidadm: 
 pwd_db_system: 
-use_hana2:
-hana1_db_mode:

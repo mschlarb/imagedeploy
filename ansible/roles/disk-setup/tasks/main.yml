@@ -1,14 +1,5 @@
 ---
 
-- name: ensure storage management software is installed
-  package:
-    name="{{ item }}"
-    state=present
-  with_items:
-    - gdisk
-    - sg3_utils
-    - lvm2
-
 - name: create volume groups
   with_dict: "{{ volumes }}"
   lvg:

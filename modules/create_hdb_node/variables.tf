@@ -2,34 +2,20 @@ variable "machine_name" {
   description = "The name of the virtual machine"
 }
 
-variable "allow_ips" {
-  description = "The IP addresses that will be allowed by the nsg"
-  default     = ["0.0.0.0/0"]
-}
-
 variable "az_domain_name" {
   description = "Prefix to be used in the domain name"
 }
 
-variable "az_region" {}
-
-variable "az_resource_group" {
-  description = "Which Azure resource group to deploy the HANA setup into.  i.e. <myResourceGroup>"
+variable "az_region" {
+  description = "Azure region to deploy resource in"
 }
 
-variable "install_cockpit" {
-  description = "Flag that determines whether to install Cockpit on the host"
-  default     = false
+variable "az_resource_group" {
+  description = "Which Azure resource group to deploy the HANA setup into."
 }
 
 variable "install_xsa" {
   description = "Flag that determines whether to install XSA on the host"
-  default     = false
-}
-
-variable "install_webide" {
-  description = "Flag that determines whether to install WebIDE on the host"
-  default     = false
 }
 
 variable "vnet_name" {
@@ -41,14 +27,13 @@ variable "vnet_subnet_name" {
   default = "default"
 }
 
+variable "diag_storage" {
+  description = "The name of the storage account to be used for boot diagnostics of the VM"
+}
+
 variable "private_ip_address" {
   description = "The desired private IP address of this HANA database.  If it isn't specified, a dynamic IP will be allocated."
   default = ""
-}
-
-variable "public_ip_allocation_type" {
-  description = "Defines whether the IP address is static or dynamic. Options are Static or Dynamic."
-  default     = "Dynamic"
 }
 
 variable "pw_db_system" {
@@ -89,97 +74,60 @@ variable "sshkey_path_public" {
 
 variable "storage_disk_sizes_data" {
   description = "List disk sizes in GB for all HANA data disks"
-  default     = [512, 512, 512]
 }
 
 variable "storage_disk_sizes_log" {
   description = "List disk sizes in GB for all HANA log disks"
-  default     = [32, 32]
 }
 
 variable "storage_disk_sizes_shared" {
   description = "List disk sizes in GB for all HANA shared disks"
-  default     = [512]
 }
 
 variable "write_accelerator" {
   description = "Whether or not you want to enable write accelerator for HANA log disks - this requires certain VM types"
-  default = false
 }
 
 variable "zone" {
   description = "Specify the availability zone"
+  default = null
 }
 
-variable "url_cockpit" {
-  description = "URL for HANA Cockpit"
-  default     = ""
+variable "url_prefix" {
+  description = "URL prefix for all downloads"
 }
 
-variable "url_di_core" {
-  description = "URL for DI Core"
-  default     = ""
+variable "file_sapcar" {
+  description = "Filename for SAPCAR for Linux to run on the bastion host"
 }
 
-variable "url_portal_services" {
-  description = "URL for Portal Services"
-  default     = ""
+variable "file_hdbserver" {
+  description = "Filename for HANA DB installation"
 }
 
-variable "url_sap_hdbserver" {
-  type        = "string"
-  description = "The URL that points to the HDB server 122.17 bits"
+variable "file_xsa" {
+  description = "Filename for XSA installation"
+  default = ""
 }
 
-variable "url_sap_sapcar_linux" {
-  description = "URL for SAPCAR for Linux to run on the bastion host"
-  default     = ""
+variable "list_xsa_files" {
+  description = "A list of filenames for XSA components"
+  default = [""]
 }
 
-variable "url_sapui5" {
-  description = "URL for SAPUI5"
-  default     = ""
-}
-
-variable "url_xs_services" {
-  description = "URL for XS Services"
-  default     = ""
-}
-
-variable "url_xsa_runtime" {
-  description = "URL for XSA runtime"
-  default     = ""
-}
-
-variable "url_xsa_hrtt" {
-  description = "URL for HRTT"
-  default     = ""
-}
-
-variable "url_xsa_webide" {
-  description = "URL for WebIDE"
-  default     = ""
-}
-
-variable "url_xsa_mta" {
-  description = "URL for MTA ext"
-  default     = ""
-}
-
-variable "useHana2" {
-  description = "If this is set to true, then, ports specifically for HANA 2.0 will be opened."
-  default     = true
+variable "list_xsa_components" {
+  description = "A list of component names"
+  default = ""
 }
 
 variable "vm_size" {
-  default = "Standard_E8s_v3"
+  description = "Size of the VM to be deployed"
 }
 
 variable "vm_user" {
   description = "The username of your HANA database VM."
 }
 
-variable "hana1_db_mode" {
-  description = "The database mode to use if deploying HANA 1. The acceptable values are: single_container, multiple_containers"
-  default     = "multiple_containers"
+variable "public_ip" {
+  description = "If the VM should have a public IP"
 }

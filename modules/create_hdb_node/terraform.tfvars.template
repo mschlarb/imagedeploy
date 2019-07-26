@@ -1,11 +1,26 @@
 # The name of the virtual machine.
 machine_name = "hanadb01"
 
+# The desired private IP address of this HANA database. Leave empty to assign dynamic IP address.
+private_ip_address = ""
+
+# If the VM should have a dynamic public IP.
+public_ip = false
+
 # Azure region to deploy resource in.
 az_region = "westus2"
 
 # Name of resource group to deploy.
 az_resource_group = "demo1"
+
+# The name of the respective Vnet.
+vnet_name = "HN1-vnet"
+
+# The name of the respective subnet.
+vnet_subnet_name = "default"
+
+# The name of the storage account to be used for boot diagnostics of the VM.
+diag_storage = "storageaccountname"
 
 # Unique domain name for easy VM access.
 az_domain_name = "hana-on-azure1"
@@ -29,6 +44,9 @@ sap_sid = "HN1"
 # SAP instance number to be used for HANA installation.
 sap_instancenum = "01"
 
+# Set this flag to true when installing the XSA application server.
+install_xsa = true
+
 # List disk sizes in GB for all HANA data disks.
 storage_disk_sizes_data = [512, 512, 512]
 
@@ -38,38 +56,33 @@ storage_disk_sizes_log = [32, 32]
 # List disk sizes in GB for all HANA shared disks.
 storage_disk_sizes_shared = [512]
 
-# URL to download SAPCAR binary from.
-url_sap_sapcar_linux = "https://XXX"
+# If write accelerator for HANA log disks is enabled. Only works with certain types of VMs.
+write_accelerator = false
 
-# URL to download HANA DB server package from.
-url_sap_hdbserver = "https://XXX"
+# UNCOMMENT only if you want to explicitly set an availability zone (replace [X] with [1], [2] or [3]).
+# zone = [X]
 
-# URL for HANA Cockpit.
-url_cockpit = "https://XXX"
+# URL prefix for all downloads
+url_prefix = "https://storageaccountname.blob.core.windows.net/sapbits/"
 
-# URL for DI Core.
-url_di_core = "https://XXX"
+# Filename of SAPCAR.
+file_sapcar = "SAPCAR_1211-80000935.EXE"
 
-# URL for Portal Services.
-url_portal_services = "https://XXX"
+# URL for HANA DB server package SAR.
+file_hdbserver = "IMDB_SERVER20_037_0-80002031.SAR"
 
-# URL for SAPUI5.
-url_sapui5 = "https://XXX"
+# URL for XSA installation package SAR.
+file_xsa = "EXTAPPSER00P_102-70001316.SAR"
 
-# URL for XS Services.
-url_xs_services = "https://XXX"
+# A list of filenames for XSA components.
+# It is recommended to download all potential XSA component files in order to provide necessary installation components
+# Please stick to the given syntax!
+list_xsa_files = ["XSACMONITORING07_1-70002324.ZIP","XSACALMPIUI12_6-80002271.ZIP","XSACDEVXDI12_9-70001255.ZIP","XSACHANAEAD04P_7-70002231.ZIP","XSACSERVICES06_15-70002361.ZIP","XSACPORTALSERV03_2-80002098.ZIP","XSACUI5FESV452_28-70003351.ZIP","XSACHRTT09_33-70002322.ZIP","XSACSAPWEBIDE03_68-80002257.ZIP","sap-xsac-devx-4.3.23.mtaext"]
 
-# URL for XSA runtime.
-url_xsa_runtime = "https://XXX"
-
-# URL for HRTT.
-url_xsa_hrtt = "https://XXX"
-
-# URL for WebIDE.
-url_xsa_webide = "https://XXX"
-
-# URL for MTA ext.
-url_xsa_mta = "https://XXX"
+# A list of all XSA components that should be installed.
+# Reference: https://help.sap.com/viewer/2c1988d620e04368aa4103bf26f17727/2.0.03/en-US/30edce93cbf74613af667423932ab63a.html
+# Please stick to the given syntax!
+list_xsa_components = "xsac_di_core,xsac_portal_serv,xsac_services,xsac_ui5_fesv4,xsac_monitoring,xsac_alm_pi_ui,xsac_hana_ea_d,xsac_hrtt,xsac_sap_web_ide"
 
 # Password for the OS sapadm user.
 pw_os_sapadm = "XXX"
@@ -86,33 +99,3 @@ pwd_db_xsaadmin = "XXX"
 
 # Password for the DB SYSTEM user for the tenant DB (MDC installations only).
 pwd_db_tenant = "XXX"
-
-# Set this flag to true when installing HANA 2.0 (or false for HANA 1.0).
-useHana2 = true
-
-# Set this flag to true when installing the XSA application server.
-install_xsa = true
-
-# Set this flag to true when installing Cockpit (requires XSA).
-install_cockpit = false
-
-# Set this flag to true when installing WebIDE (requires XSA).
-install_webide = false
-
-# Set this to be a list of the ip addresses that should be allowed by the NSG.
-allow_ips = ["0.0.0.0/0"]
-
-# The name of the respective Vnet.
-vnet_name = "HN1-vnet"
-
-# The name of the respective subnet.
-vnet_subnet_name = "default"
-
-# The desired private IP address of this HANA database. Leave empty to assign dynamic IP address.
-private_ip_address_hdb = ""
-
-# If write accelerator for HANA log disks is enabled.
-write_accelerator = false
-
-# Specify the Availability Zone.
-zone = "1"

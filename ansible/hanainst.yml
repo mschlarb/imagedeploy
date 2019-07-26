@@ -2,13 +2,7 @@
 - hosts: all
   become: true
   roles:
-    - disk-setup
     - hostprep
+    - disk-setup
     - saphana-install
     - { role: xsa-install, when: install_xsa == true }
-
-- hosts: all
-  become: true
-  become_user: "{{ sap_sid|lower }}adm"
-  roles:
-    - { role: webide-install, when: install_xsa == true and install_webide == true }

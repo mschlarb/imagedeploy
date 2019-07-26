@@ -3,11 +3,7 @@ output "machine_hostname" {
 }
 
 output "ansible_targethost" {
-  value = "${module.nic_and_pip_setup.fqdn}"
-}
-
-output "fqdn" {
-  value = "${module.nic_and_pip_setup.fqdn}"
+  value = "${module.nic_and_pip_setup.nic_ip}"
 }
 
 output "hdb_vm_user" {
@@ -30,16 +26,8 @@ output "az_resource_group" {
   value = "${var.az_resource_group}"
 }
 
-output "install_cockpit" {
-  value = "${var.install_cockpit}"
-}
-
 output "install_xsa" {
   value = "${var.install_xsa}"
-}
-
-output "install_webide" {
-  value = "${var.install_webide}"
 }
 
 output "az_domain_name" {
@@ -60,10 +48,6 @@ output "vnet_subnet_name" {
 
 output "private_ip_address" {
   value = "${module.nic_and_pip_setup.nic_ip}"
-}
-
-output "public_ip_allocation_type" {
-  value = "${var.public_ip_allocation_type}"
 }
 
 output "pw_db_system" {
@@ -119,52 +103,28 @@ output "zone" {
   value = "${var.zone}"
 }
 
-output "url_cockpit" {
-  value = "${var.url_cockpit}"
+output "url_prefix" {
+  value = var.url_prefix
 }
 
-output "url_di_core" {
-  value = "${var.url_di_core}"
+output "file_sapcar" {
+  value = var.file_sapcar
 }
 
-output "url_portal_services" {
-  value = "${var.url_portal_services}"
+output "file_hdbserver" {
+  value = var.file_hdbserver
 }
 
-output "url_sap_hdbserver" {
-  value = "${var.url_sap_hdbserver}"
+output "file_xsa" {
+  value = var.file_xsa
 }
 
-output "url_sap_sapcar_linux" {
-  value = "${var.url_sap_sapcar_linux}"
+output "list_xsa_files" {
+  value = var.list_xsa_files
 }
 
-output "url_sapui5" {
-  value = "${var.url_sapui5}"
-}
-
-output "url_xs_services" {
-  value = "${var.url_xs_services}"
-}
-
-output "url_xsa_runtime" {
-  value = "${var.url_xsa_runtime}"
-}
-
-output "url_xsa_hrtt" {
-  value = "${var.url_xsa_hrtt}"
-}
-
-output "url_xsa_webide" {
-  value = "${var.url_xsa_webide}"
-}
-
-output "url_xsa_mta" {
-  value = "${var.url_xsa_mta}"
-}
-
-output "useHana2" {
-  value = "${var.useHana2}"
+output "list_xsa_components" {
+  value = var.list_xsa_components
 }
 
 output "vm_size" {
