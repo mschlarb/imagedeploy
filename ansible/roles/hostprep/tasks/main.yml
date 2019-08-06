@@ -7,6 +7,34 @@
 - name: Register SUSE Cloud SMT
   command: /usr/sbin/registercloudguest --force-new
 
+- name: Create 2 GiB swapfile
+  shell: |
+    dd if=/dev/zero of=/mnt/resource/swapfile bs=4096 count=524288
+    chmod 0600 /mnt/resource/swapfile
+    mkswap /mnt/resource/swapfile
+    swapon /mnt/resource/swapfile
+
+- name: Enabling swapfile via waagent - set ResourceDisk.Format
+  lineinfile:
+    path: /etc/waagent.conf
+    regex: '^ResourceDisk.Format'
+    line: 'ResourceDisk.Format=y'
+    backrefs: yes
+
+- name: Enabling swapfile via waagent - set ResourceDisk.EnableSwap
+  lineinfile:
+    path: /etc/waagent.conf
+    regex: '^ResourceDisk.EnableSwap'
+    line: 'ResourceDisk.EnableSwap=y'
+    backrefs: yes
+
+- name: Enabling swapfile via waagent - set ResourceDisk.SwapSizeMB
+  lineinfile:
+    path: /etc/waagent.conf
+    regex: '^ResourceDisk.SwapSizeMB'
+    line: 'ResourceDisk.SwapSizeMB=2048'
+    backrefs: yes
+
 - name: Install patterns
   zypper:
     name="{{ inst_patterns }}"
