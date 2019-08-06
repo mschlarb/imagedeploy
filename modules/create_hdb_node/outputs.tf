@@ -30,8 +30,8 @@ output "install_xsa" {
   value = "${var.install_xsa}"
 }
 
-output "az_domain_name" {
-  value = "Prefix to be used in the domain name"
+output "fqdn" {
+  value = var.public_ip ? module.nic_and_pip_setup.fqdn : "${var.machine_name}.${var.az_domain_name}"
 }
 
 output "az_region" {
