@@ -8,5 +8,6 @@ inst_packages:
   - libopenssl1_0_0
   - libssh2-1
   - saptune
+  - syslinux
 
 fqdnhost: "{% if public_ip %} {{ fqdn }} {% else %} {{ vm_name }}.{{ fqdn }} {% endif %}"
