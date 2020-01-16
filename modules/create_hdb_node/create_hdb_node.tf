@@ -1,5 +1,5 @@
 provider "azurerm" {
-  version = "~> 1.30.1"
+  version = "~> 1.40.0"
 }
 
 data "azurerm_subnet" "subnet" {
