@@ -21,7 +21,7 @@ resource null_resource "automation-execution" {
      \"pwd_os_sapadm\": \"${var.pw_os_sapadm}\", \
      \"pwd_os_sidadm\": \"${var.pw_os_sidadm}\", \
      \"pwd_db_system\": \"${var.pw_db_system}\", \
-     \"resource_group\": \"${var.az_resource_group}\", \
+     \"resource_group\": \"${var.az_resource_group_vm}\", \
      \"pwd_db_xsaadmin\": \"${var.pwd_db_xsaadmin}\", \
      \"pwd_db_tenant\": \"${var.pwd_db_tenant}\", \
      \"install_xsa\": ${var.install_xsa}, \
