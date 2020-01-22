@@ -10,8 +10,16 @@ variable "az_region" {
   description = "Azure region to deploy resource in"
 }
 
-variable "az_resource_group" {
-  description = "Which Azure resource group to deploy the HANA setup into."
+variable "az_resource_group_vm" {
+  description = "Which Azure resource group to deploy the HANA VM into."
+}
+
+variable "az_resource_group_net" {
+  description = "Which Azure resource group does the network belong to."
+}
+
+variable "az_resource_group_storage" {
+  description = "Which Azure resource group does the storage account belong to."
 }
 
 variable "install_xsa" {

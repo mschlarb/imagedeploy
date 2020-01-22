@@ -1,8 +1,12 @@
 
 variable "az_region" {}
 
-variable "az_resource_group" {
-  description = "Which Azure resource group to deploy the HANA setup into.  i.e. <myResourceGroup>"
+variable "az_resource_group_vm" {
+  description = "Which Azure resource group to deploy the HANA VM into."
+}
+
+variable "az_resource_group_storage" {
+  description = "Which Azure resource group does the storage account belong to."
 }
 
 variable "machine_name" {

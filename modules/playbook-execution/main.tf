@@ -3,7 +3,7 @@ resource null_resource "automation-execution" {
   provisioner "local-exec" {
     command = <<EOT
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES \
-    AZURE_RESOURCE_GROUPS="${var.az_resource_group}" \
+    AZURE_RESOURCE_GROUPS="${var.az_resource_group_vm}" \
     ANSIBLE_HOST_KEY_CHECKING="False" \
     ansible-playbook -i ${var.ansible_targethost}, \
     -u ${var.vm_user} \

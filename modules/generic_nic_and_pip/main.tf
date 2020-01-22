@@ -3,7 +3,7 @@ resource "azurerm_public_ip" "pip" {
   count                        = var.public_ip ? 1 : 0
   name                         = "${var.name}-pip"
   location                     = var.az_region
-  resource_group_name          = var.az_resource_group
+  resource_group_name          = var.az_resource_group_vm
   allocation_method            = local.dynamic
   domain_name_label            = "${lower(var.name)}-${lower(var.az_domain_name)}"
   zones                        = var.zone
@@ -15,7 +15,7 @@ resource "azurerm_network_interface" "nic" {
 #  depends_on                = ["azurerm_public_ip.pip"]
   name                      = "${var.name}-nic"
   location                  = var.az_region
-  resource_group_name       = var.az_resource_group
+  resource_group_name       = var.az_resource_group_vm
 
   ip_configuration {
     name      = "${var.name}-nic-configuration"

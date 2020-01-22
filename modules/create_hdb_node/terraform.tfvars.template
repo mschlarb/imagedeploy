@@ -10,8 +10,14 @@ public_ip = false
 # Azure region to deploy resource in.
 az_region = "westus2"
 
-# Name of resource group to deploy.
-az_resource_group = "demo1"
+# Which Azure resource group to deploy the HANA VM into.
+az_resource_group_vm = "demo1"
+
+# Which Azure resource group does the network belong to.
+az_resource_group_net = "demo1"
+
+# Which Azure resource group does the storage account belong to.
+az_resource_group_storage = "demo1"
 
 # The name of the respective Vnet.
 vnet_name = "HN1-vnet"

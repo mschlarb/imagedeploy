@@ -1,4 +1,4 @@
-variable "az_resource_group" {
+variable "az_resource_group_vm" {
   description = "Which azure resource group to deploy the HANA setup into.  i.e. <myResourceGroup>"
 }
 

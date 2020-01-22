@@ -1,7 +1,7 @@
 # Fetch storage account for boot diagnostics
 data "azurerm_storage_account" "diag_storage" {
-  name                = "${var.diag_storage}"
-  resource_group_name = "${var.az_resource_group}"
+  name                = var.diag_storage
+  resource_group_name = var.az_resource_group_storage
 }
 
 # All disks that are in the storage_disk_sizes_data list will be created
@@ -10,7 +10,7 @@ resource "azurerm_managed_disk" "disk_data" {
   name                 = "${var.machine_name}-datadisk${count.index}"
   location             = "${var.az_region}"
   storage_account_type = "Premium_LRS"
-  resource_group_name  = "${var.az_resource_group}"
+  resource_group_name  = "${var.az_resource_group_vm}"
   disk_size_gb         = "${var.storage_disk_sizes_data[count.index]}"
   create_option        = "Empty"
   zones = "${var.zone}"
@@ -31,7 +31,7 @@ resource "azurerm_managed_disk" "disk_log" {
   name                 = "${var.machine_name}-logdisk${count.index}"
   location             = "${var.az_region}"
   storage_account_type = "Premium_LRS"
-  resource_group_name  = "${var.az_resource_group}"
+  resource_group_name  = "${var.az_resource_group_vm}"
   disk_size_gb         = "${var.storage_disk_sizes_log[count.index]}"
   create_option        = "Empty"
   zones = "${var.zone}"
@@ -53,7 +53,7 @@ resource "azurerm_managed_disk" "disk_shared" {
   name                 = "${var.machine_name}-shareddisk${count.index}"
   location             = "${var.az_region}"
   storage_account_type = "Premium_LRS"
-  resource_group_name  = "${var.az_resource_group}"
+  resource_group_name  = "${var.az_resource_group_vm}"
   disk_size_gb         = "${var.storage_disk_sizes_shared[count.index]}"
   create_option        = "Empty"
   zones = "${var.zone}"
@@ -72,7 +72,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "disk_shared" {
 resource "azurerm_virtual_machine" "vm" {
   name                          = "${var.machine_name}"
   location                      = "${var.az_region}"
-  resource_group_name           = "${var.az_resource_group}"
+  resource_group_name           = "${var.az_resource_group_vm}"
   network_interface_ids         = ["${var.nic_id}"]
   vm_size                       = "${var.vm_size}"
   delete_os_disk_on_termination = "true"

@@ -5,12 +5,12 @@ provider "azurerm" {
 data "azurerm_subnet" "subnet" {
   name                 = var.vnet_subnet_name
   virtual_network_name = var.vnet_name
-  resource_group_name  = var.az_resource_group
+  resource_group_name  = var.az_resource_group_net
 }
 
 module "nic_and_pip_setup" {
   source = "../generic_nic_and_pip"
-  az_resource_group         = var.az_resource_group
+  az_resource_group_vm      = var.az_resource_group_vm
   az_region                 = var.az_region
   az_domain_name            = var.az_domain_name
   name                      = var.machine_name
@@ -23,7 +23,8 @@ module "nic_and_pip_setup" {
 module "vm_and_disk_creation" {
   source = "../generic_vm_and_disk_creation"
   sshkey_path_public        = var.sshkey_path_public
-  az_resource_group         = var.az_resource_group
+  az_resource_group_vm      = var.az_resource_group_vm
+  az_resource_group_storage = var.az_resource_group_storage
   az_region                 = var.az_region
   storage_disk_sizes_data   = var.storage_disk_sizes_data
   storage_disk_sizes_log    = var.storage_disk_sizes_log
@@ -43,7 +44,7 @@ module "ansible" {
   fqdn                     = var.public_ip ? module.nic_and_pip_setup.fqdn : var.az_domain_name
   vm_name                  = module.vm_and_disk_creation.machine_hostname
   ansible_playbook_path    = "../../ansible/hanainst.yml"
-  az_resource_group        = var.az_resource_group
+  az_resource_group_vm     = var.az_resource_group_vm
   sshkey_path_private      = var.sshkey_path_private
   sap_instancenum          = var.sap_instancenum
   sap_sid                  = var.sap_sid

@@ -22,8 +22,16 @@ output "sshkey_path_public" {
   value = "${var.sshkey_path_public}"
 }
 
-output "az_resource_group" {
-  value = "${var.az_resource_group}"
+output "az_resource_group_vm" {
+  value = "${var.az_resource_group_vm}"
+}
+
+output "az_resource_group_net" {
+  value = "${var.az_resource_group_net}"
+}
+
+output "az_resource_group_storage" {
+  value = "${var.az_resource_group_storage}"
 }
 
 output "install_xsa" {
